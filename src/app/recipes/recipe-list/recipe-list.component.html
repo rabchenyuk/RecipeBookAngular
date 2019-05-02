@@ -5,9 +5,17 @@
 </div>
 <hr>
 <div class="">
-    <div class="col-xs-12">
+    <!-- case with using @Output -->
+    <!-- <div class="col-xs-12">
         <app-recipe-item
             (recipeSelected)="onRecipeSelected(recipeEl)"
+            [recipe]="recipeEl"
+            *ngFor="let recipeEl of recipes"></app-recipe-item>
+    </div> -->
+
+    <!-- case with using services -->
+    <div class="col-xs-12">
+        <app-recipe-item
             [recipe]="recipeEl"
             *ngFor="let recipeEl of recipes"></app-recipe-item>
     </div>
