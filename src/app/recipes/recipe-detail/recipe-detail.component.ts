@@ -1,4 +1,4 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from './../recipe.service';
 import { ShoppingListService } from './../../shopping-list/shopping-list.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -15,9 +15,9 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
   isOpen = false;
 
-  constructor(private slService: ShoppingListService,
-              private recipeService: RecipeService,
-              private route: ActivatedRoute) { }
+  constructor(private recipeService: RecipeService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -32,6 +32,10 @@ export class RecipeDetailComponent implements OnInit {
     // this.recipe.ingredients.forEach((ingredient: Ingredient) => this.slService.addIngredient(ingredient));
     // or
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
+
+  onEditRecipe() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
   openModal() {
