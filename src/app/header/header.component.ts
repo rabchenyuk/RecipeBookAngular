@@ -1,3 +1,4 @@
+import { DataStorageService } from './../shared/data-storage.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -9,7 +10,7 @@ export class HeaderComponent implements OnInit {
   // @Output() featureSelected = new EventEmitter<string>();
   isOpen = false;
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
   }
@@ -17,6 +18,17 @@ export class HeaderComponent implements OnInit {
   // onSelect(feature: string) {
   //   this.featureSelected.emit(feature);
   // }
+
+  onSaveData() {
+    this.dataStorageService.storeRecipes()
+      .subscribe((response: Response) => {
+        console.log(response);
+      }, () => console.log('error'));
+  }
+
+  onFetchData() {
+    this.dataStorageService.getRecipes();
+  }
 
   openModal() {
     this.isOpen = !this.isOpen;
