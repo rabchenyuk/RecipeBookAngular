@@ -8,17 +8,22 @@
       <ul class="navbar-nav mr-auto nav-pills nav-fill">
         <!-- <li class="nav-item mr-3"><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
         <li class="nav-item"><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li> -->
-        <li class="nav-item mr-3"><a [routerLink]="['/recipes']" class="nav-link" routerLinkActive="active">Recipes</a></li>
-        <li class="nav-item"><a [routerLink]="['/shopping-list']" class="nav-link" routerLinkActive="active">Shopping List</a></li>
+        <li class="nav-item mr-3"><a [routerLink]="['/recipes']" class="nav-link" routerLinkActive="active">Recipes</a>
+        </li>
+        <li class="nav-item"><a [routerLink]="['/shopping-list']" class="nav-link" routerLinkActive="active">Shopping
+            List</a></li>
       </ul>
       <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-          <a routerLink="/signup" class="nav-link mr-5">Register</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/signin" class="nav-link mr-5">Login</a>
-        </li>
-        <li class="nav-item dropdown" (click)="openModal()">
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li>
+            <a routerLink="/signup" class="nav-link mr-3">Register</a>
+          </li>
+          <li>
+            <a routerLink="/signin" class="nav-link mr-3">Login</a>
+          </li>
+        </ng-template>
+        <li><a class="mr-3" style="cursor: pointer;" *ngIf="authService.isAuthenticated()" (click)="logout()">Logout</a></li>
+        <li class="nav-item dropdown" (click)="openModal()" *ngIf="authService.isAuthenticated()">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu" [ngClass]="{show: isOpen}">
             <li class="nav-item"><a (click)="onSaveData()" style="cursor: pointer;">Save Data</a></li>

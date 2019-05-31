@@ -1,5 +1,6 @@
 import { DataStorageService } from './../shared/data-storage.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ export class HeaderComponent implements OnInit {
   // @Output() featureSelected = new EventEmitter<string>();
   isOpen = false;
 
-  constructor(private dataStorageService: DataStorageService) { }
+  constructor(private dataStorageService: DataStorageService,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -18,6 +20,10 @@ export class HeaderComponent implements OnInit {
   // onSelect(feature: string) {
   //   this.featureSelected.emit(feature);
   // }
+
+  logout() {
+    this.authService.logout();
+  }
 
   onSaveData() {
     this.dataStorageService.storeRecipes()
