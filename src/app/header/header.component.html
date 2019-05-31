@@ -12,6 +12,12 @@
         <li class="nav-item"><a [routerLink]="['/shopping-list']" class="nav-link" routerLinkActive="active">Shopping List</a></li>
       </ul>
       <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+          <a routerLink="/signup" class="nav-link mr-5">Register</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/signin" class="nav-link mr-5">Login</a>
+        </li>
         <li class="nav-item dropdown" (click)="openModal()">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu" [ngClass]="{show: isOpen}">
